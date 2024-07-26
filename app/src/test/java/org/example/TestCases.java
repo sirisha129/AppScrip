@@ -48,7 +48,7 @@ public class TestCases {
 
     @Test(priority = 1, enabled = true)
     public void createAccount() throws InterruptedException {
-
+  
         //try {
             utility.navigateTo("https://trulyfreehome.dev/");
             Thread.sleep(2000);
@@ -57,7 +57,7 @@ public class TestCases {
             utility.click(click_Yes);
 
             WebElement mobile_Number = utility.findElement(By.xpath("//input[@id='regPhoneInput']"));
-            utility.sendKeys(mobile_Number, "3033992233");
+            utility.sendKeys(mobile_Number, "3033999233");
 
             WebElement click_Checkbox = utility.findElement(By.xpath("//div[@class='jsx-2527197127 pr-2 pt-2']/input"));
             utility.click(click_Checkbox);
