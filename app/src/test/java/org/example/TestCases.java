@@ -57,7 +57,7 @@ public class TestCases {
             utility.click(click_Yes);
 
             WebElement mobile_Number = utility.findElement(By.xpath("//input[@id='regPhoneInput']"));
-            utility.sendKeys(mobile_Number, "3033999233");
+            utility.sendKeys(mobile_Number, "3033949233");
 
             WebElement click_Checkbox = utility.findElement(By.xpath("//div[@class='jsx-2527197127 pr-2 pt-2']/input"));
             utility.click(click_Checkbox);
@@ -79,13 +79,13 @@ public class TestCases {
             utility.sendKeys(verification4, "1");
 
             WebElement FN = utility.findElement(By.xpath("//input[@label='First Name*']"));
-            utility.sendKeys(FN, "ksrisha");
+            utility.sendKeys(FN, "psudha");
 
             WebElement LN = utility.findElement(By.xpath("//input[@label='Last Name*']"));
             utility.sendKeys(LN, "buda");
 
             WebElement email = utility.findElement(By.xpath("//input[@label='Enter your best email*']"));
-            utility.sendKeys(email, "ksiribuda84@gmail.com");
+            utility.sendKeys(email, "psudhab34@gmail.com");
            
             WebElement click_done = utility.findElement(By.xpath("//*[text()='DONE']"));
             utility.click(click_done);
@@ -100,6 +100,7 @@ public class TestCases {
     }
 
     @Test(priority = 2, enabled = true)
+
     public static void megaMenu() throws InterruptedException {
         //try {
 
@@ -125,34 +126,37 @@ public class TestCases {
     }
 
     @Test(priority = 3, enabled = true)
+
     public static void PLP_ToExcel() throws IOException, InterruptedException {
         driver.getCurrentUrl();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'product_image')]")));
+    
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'product_image')]")));
 
-        // Extract product details
-        List<WebElement> products = driver.findElements(By.xpath("//div[contains(@class,'product_image')]"));
-        List<Object[]> productDetails = new ArrayList<>();       
+    // Extract product details
+    List<WebElement> products = driver.findElements(By.xpath("//div[contains(@class,'product_image')]"));
+    List<Object[]> productDetails = new ArrayList<>();  // Use a List to maintain order
 
-        for(WebElement product : products) {            
-            String productName = wait.until(ExpectedConditions.visibilityOf(product.findElement(By.xpath("//span[contains(@class,'card_title')]")))).getText();
-            System.out.println(productName);
-            String productPrice = wait.until(ExpectedConditions.visibilityOf(product.findElement(By.xpath("//span[contains(@class,'stroke')]")))).getText();
-            System.out.println(productPrice);
-            productDetails.add(new Object[]{productName, productPrice});
+    String productName; 
+    String productPrice;
+     for(int i=1;i<=products.size();i++) 
+     { 
+        productName = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//span[contains(@class,'card_title')])["+i+"]")))).getText();
+        System.out.println(productName); 
+        productPrice = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("(//span[contains(@class,'stroke')])["+i+"]")))).getText();
+        System.out.println(productPrice);
+        productDetails.add(new Object[]{productName, productPrice});
+    }
+           //Thread.sleep(500); }
+    // Define the file path and sheet name
+    String filePath = "EmaniProducts.xlsx";
+    String sheetName = "EmaniProducts";
 
-            //Thread.sleep(500);
-        }
-        
-        // Define the file path and sheet name
-        String filePath = "EmaniProducts.xlsx";
-        String sheetName = "EmaniProducts";
-
-        // Write data into Excel
-        utility.writeInToExcel(filePath, sheetName, productDetails.toArray(new Object[0][]));
+    // Write data into Excel
+    utility.writeInToExcel(filePath, sheetName, productDetails.toArray(new Object[0][]));
     }
 
     @Test(priority = 4, enabled = true)
+
     public static void productDetailsPage() throws InterruptedException {
 
         Thread.sleep(1000);
@@ -184,6 +188,7 @@ public class TestCases {
     }
 
     @Test(priority = 5, enabled = true)
+    
     public static void onClick_cartIcon() throws InterruptedException {
 
         //click on cart icon
