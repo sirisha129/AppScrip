@@ -27,6 +27,9 @@ To set up the project locally, follow these steps:
 3. **Setup WebDriver:**
 
    Configured ChromeDriver and set up essential utilities like JavascriptExecutor and WebDriverWait in the @BeforeSuite method.
+   Implemented TestCases class file with all the functional flow and Wrapper methods as utility class to call in each testmethod.
+   Under Test Execution each test method is annotated with @Test and configured with priority.
+   @AfterSuite to o perform cleanup tasks after the test suite completes.
 
 ## Usage
 
