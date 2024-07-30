@@ -50,14 +50,13 @@ public class TestCases {
     public void createAccount() throws InterruptedException {
   
         //try {
-            utility.navigateTo("https://trulyfreehome.dev/");
-            Thread.sleep(2000);
+            utility.navigateTo("https://trulyfreehome.dev/");            
 
             WebElement click_Yes = utility.findElement(By.xpath("//button[@class='jsx-46f6405b54523d64 join_btn']"));
             utility.click(click_Yes);
 
             WebElement mobile_Number = utility.findElement(By.xpath("//input[@id='regPhoneInput']"));
-            utility.sendKeys(mobile_Number, "3033949233");
+            utility.sendKeys(mobile_Number, "3033989233");
 
             WebElement click_Checkbox = utility.findElement(By.xpath("//div[@class='jsx-2527197127 pr-2 pt-2']/input"));
             utility.click(click_Checkbox);
@@ -79,29 +78,29 @@ public class TestCases {
             utility.sendKeys(verification4, "1");
 
             WebElement FN = utility.findElement(By.xpath("//input[@label='First Name*']"));
-            utility.sendKeys(FN, "psudha");
+            utility.sendKeys(FN, "karthey");
 
             WebElement LN = utility.findElement(By.xpath("//input[@label='Last Name*']"));
-            utility.sendKeys(LN, "buda");
+            utility.sendKeys(LN, "sam");
 
             WebElement email = utility.findElement(By.xpath("//input[@label='Enter your best email*']"));
-            utility.sendKeys(email, "psudhab34@gmail.com");
+            utility.sendKeys(email, "karthisame67@gmail.com");
            
             WebElement click_done = utility.findElement(By.xpath("//*[text()='DONE']"));
             utility.click(click_done);
 
             System.out.println("Successfully Signed UP");
 
-        //} catch (Exception e) {
+        //} catch (Exception e) {nnn
         //    e.printStackTrace();
         //    Assert.fail("Test case failed due to exception: " + e.getMessage());
         //}
 
     }
 
-    @Test(priority = 2, enabled = true)
+@Test(priority = 2, enabled = true)
 
-    public static void megaMenu() throws InterruptedException {
+    public void megaMenu() throws InterruptedException {
         //try {
 
             driver.getCurrentUrl();
@@ -127,14 +126,14 @@ public class TestCases {
 
     @Test(priority = 3, enabled = true)
 
-    public static void PLP_ToExcel() throws IOException, InterruptedException {
-        driver.getCurrentUrl();
+    public void PLP_ToExcel() throws IOException, InterruptedException {
+    driver.getCurrentUrl();
     
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'product_image')]")));
 
     // Extract product details
     List<WebElement> products = driver.findElements(By.xpath("//div[contains(@class,'product_image')]"));
-    List<Object[]> productDetails = new ArrayList<>();  // Use a List to maintain order
+    List<Object[]> productDetails = new ArrayList<>();  // Used a List to maintain Insertion order
 
     String productName; 
     String productPrice;
@@ -146,7 +145,7 @@ public class TestCases {
         System.out.println(productPrice);
         productDetails.add(new Object[]{productName, productPrice});
     }
-           //Thread.sleep(500); }
+        
     // Define the file path and sheet name
     String filePath = "EmaniProducts.xlsx";
     String sheetName = "EmaniProducts";
@@ -157,7 +156,7 @@ public class TestCases {
 
     @Test(priority = 4, enabled = true)
 
-    public static void productDetailsPage() throws InterruptedException {
+    public void productDetailsPage() throws InterruptedException {
 
         Thread.sleep(1000);
 
@@ -189,7 +188,7 @@ public class TestCases {
 
     @Test(priority = 5, enabled = true)
     
-    public static void onClick_cartIcon() throws InterruptedException {
+    public void onClick_cartIcon() throws InterruptedException {
 
         //click on cart icon
         WebElement cart_Icon_Click = utility.findElement(By.xpath("//a[@href='/cart']"));
@@ -215,16 +214,15 @@ public class TestCases {
     }
 
     @Test(priority = 6, enabled = true)
-
-    public static void shipping_Details() throws InterruptedException {
+    public void shipping_Details() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstName")));
 
         WebElement first_Name = utility.findElement(By.name("firstName"));
-        utility.sendKeys(first_Name, "Buda");
+        utility.sendKeys(first_Name, "karthik");
 
         WebElement last_Name = utility.findElement(By.name("lastName"));
-        utility.sendKeys(last_Name, "siri");
+        utility.sendKeys(last_Name, "sam");
 
         WebElement phone_Number = utility.findElement(By.id("regPhoneInput"));
         utility.sendKeys(phone_Number, "3033362233");
@@ -246,16 +244,12 @@ public class TestCases {
 
         WebElement continueClick = utility.findElement(By.id("continue_btn"));
         utility.click(continueClick);
-        //Thread.sleep(2000);
-
-
         // wait.until(ExpectedConditions.elementToBeClickable(By.id("exclusiveDealsCloseButton"))).click();
         // wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("thankYouPage")));
     }
 
     @Test(priority = 7, enabled = true)
-
-    public static void addCard_Details() throws InterruptedException {
+    public void addCard_Details() throws InterruptedException {
 
         driver.getCurrentUrl();                
 
@@ -264,7 +258,7 @@ public class TestCases {
         Thread.sleep(1000);
 
         WebElement card_Name = utility.findElement(By.id("full_name"));
-        utility.sendKeys(card_Name, "BudaSiri");    
+        utility.sendKeys(card_Name, "KarthikSam");    
         
         Thread.sleep(1000);
 
@@ -301,7 +295,7 @@ public class TestCases {
     }
 
     @Test(priority = 8, enabled = true)
-    private void verifyOrder_Logout() {
+    public void verifyOrder_Logout() {
         driver.getCurrentUrl();
         wait.until(ExpectedConditions.urlContains("orders"));
 
