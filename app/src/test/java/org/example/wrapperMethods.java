@@ -1,5 +1,6 @@
 package org.example;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -16,25 +17,25 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.time.Duration;
 
+
+
 public class wrapperMethods {
 
     WebDriver driver;
     WebDriverWait wait;
     JavascriptExecutor js;
+    //private static final Logger LOGGER = Logger.getLogger(wrapperMethods.class.getName());
 
     public wrapperMethods(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver,Duration.ofSeconds(30));
         this.js = (JavascriptExecutor) driver;
     }
 
     public void click(WebElement element) {
-        try {
-            
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            element.click();
-            Thread.sleep(1000);
+        try {       
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();            
+            //Thread.sleep(1000);
             
         } catch (Exception e) {
             System.out.println("Exception occurred while clicking: " + e.getMessage());
@@ -43,10 +44,8 @@ public class wrapperMethods {
 
     public void sendKeys(WebElement element, String keysToSend) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOf(element));
-            element.sendKeys(keysToSend);
-            Thread.sleep(900);
+            wait.until(ExpectedConditions.visibilityOf(element)).sendKeys(keysToSend);            
+            //Thread.sleep(900);
         } catch (Exception e) {
             System.out.println("Exception occurred while sending keys: " + e.getMessage());
         }
@@ -54,8 +53,8 @@ public class wrapperMethods {
 
     public WebElement findElement(By locator) {
         try {
-            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));           
-            return element;
+            return wait.until(ExpectedConditions.presenceOfElementLocated(locator));         
+           
         } catch (Exception e) {
             System.out.println("Exception occurred while finding element: " + locator + " - " + e.getMessage());
             e.printStackTrace();
@@ -66,9 +65,8 @@ public class wrapperMethods {
     public void navigateTo(String url) {
         try {
             driver.get(url);
-            Thread.sleep(3000);
-            //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-            //wait.until(ExpectedConditions.urlToBe("https://trulyfreehome.dev/"));
+            wait.until(ExpectedConditions.urlToBe(url));
+            //Thread.sleep(3000);            
         } catch (Exception e) {
             System.out.println("Exception occurred while navigating to the URL: " + e.getMessage());
         }
